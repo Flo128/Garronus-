@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin - Campagne Warhammer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Administration</h1>
+  <pre id="output"></pre>
+
+  <script>
+    fetch('campaign.txt')
+      .then(r => r.text())
+      .then(data => {
+        document.getElementById('output').textContent = data;
+      });
+  </script>
+</body>
+</html>

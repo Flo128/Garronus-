@@ -1,0 +1,15 @@
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: #000;
+  color: white;
+}
+
+.map-container {
+  position: relative;
+  display: inline-block;
+}
+
+#galaxy-img {
+  max-width: 100%;
+}

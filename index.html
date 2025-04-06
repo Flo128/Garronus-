@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campagne Warhammer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Carte de la galaxie</h1>
+  <div class="map-container">
+    <img src="galaxy.jpg" usemap="#galaxy" id="galaxy-img" />
+    <map name="galaxy">
+      <area shape="circle" coords="150,200,20" href="#" onclick="markRegion(1)" alt="Zone 1" />
+      <area shape="circle" coords="400,300,20" href="#" onclick="markRegion(2)" alt="Zone 2" />
+    </map>
+  </div>
+
+  <script>
+    let currentPlayer = "joueur1";
+
+    function markRegion(id) {
+      fetch('campaign.txt')
+        .then(r => r.text())
+        .then(data => {
+          let campaign = JSON.parse(data || '{}');
+          campaign[id] = currentPlayer;
+          saveCampaign(campaign);
+        });
+    }
+
+    function saveCampaign(data) {
+      fetch('save.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    }
+  </script>
+</body>
+</html>
